@@ -59,7 +59,8 @@ class JudgeClient(object):
 
     def _compare_output(self, test_case_file_id, user_output_file):
         with open(user_output_file, "rb") as f:
-            content = f.read()
+            #content = f.read()
+            content = b"\n".join([c.rstrip() for c in f.read().split(b'\n')])
         output_md5 = hashlib.md5(content.rstrip()).hexdigest()
         result = output_md5 == self._get_test_case_file_info(test_case_file_id)["stripped_output_md5"]
         return output_md5, result
