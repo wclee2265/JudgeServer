@@ -130,7 +130,7 @@ class JudgeServer:
                         item_info["output_md5"] = hashlib.md5(output_data).hexdigest()
                         item_info["output_size"] = len(output_data)
                         #item_info["stripped_output_md5"] = hashlib.md5(output_data.rstrip()).hexdigest()
-                        item_info["stripped_output_md5"] = hashlib.md5(b"\n".join([c.rstrip() for c in output_data.split(b'\n')])).hexdigest()
+                        item_info["stripped_output_md5"] = hashlib.md5(b"\n".join([c.rstrip() for c in output_data.split(b'\n')]).rstrip()).hexdigest()
 
                         
                         with open(os.path.join(test_case_dir, output_name), "wb") as f:
